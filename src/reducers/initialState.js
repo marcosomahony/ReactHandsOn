@@ -1,7 +1,7 @@
 export default {
     movies: [],
     tvshows: [],
-    movie: {},
+    movie: {recommended: [], similar:[]},
     show: {},
     comments: [],
     recommended: [],

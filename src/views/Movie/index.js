@@ -12,7 +12,7 @@ class Movie extends React.Component {
         super(props)   
 
         this.state = {
-            movie: {},
+            movie: {recommended:[], similar:[]},
             comments: [],
             recommended: [],
             similar: []
@@ -25,21 +25,23 @@ class Movie extends React.Component {
 
         if(match != undefined) {
             movieActions.loadMovie(match.params.id)
+            movieActions.getRecommended(match.params.id);
         }
         else {
-            movieActions.loadMovie(id)   
+            movieActions.loadMovie(id)  
+            movieActions.getRecommended(id); 
         }
-        movieActions.getRecommended(match.params.id);
-        movieActions.getSimilar(match.params.id);
+        
+        //movieActions.getSimilar(match.params.id);
     }
 
     componentWillReceiveProps({movie, recommended, similar}) {
-        console.log('pablld')
         this.setState({movie, recommended, similar})
     }
 
     render() {
-        const { movie, comments, recommended } = this.state
+        const { movie, comments, recommended, similar } = this.state
+        console.log('render', movie)
         return (
             <section className="container main movie" style={{backgroundImage: movie.id ? `url(https://image.tmdb.org/t/p/w342/${movie.backdrop_path})` : ''}}>
                 <div className="overlay"></div>
@@ -65,11 +67,12 @@ class Movie extends React.Component {
                 <div className="container col-md-12 my-4">
                     <Comments movieId={movie.id}/>
                 </div>
-                <div>
+                <h1>RECOMENDACIONES: </h1>
+                <div className="row movie-list-wrapper">
                     {
-                        recommended.map((movie, i) => {
+                        movie.recommended.map((movie, i) => {
                             return(
-                            <Movie
+                            <MovieDisplay
                                 key = {i} 
                                 {...movie}
                             />
@@ -77,6 +80,21 @@ class Movie extends React.Component {
                             
                         })
                     }
+                </div>
+                <h1>SIMILARES: </h1>
+                <div className="row movie-list-wrapper">
+                
+{                    /* {
+                        movie.similar.map((movie, i) => {
+                            return(
+                            <MovieDisplay
+                                key = {i} 
+                                {...movie}
+                            />
+                            )
+                            
+                        })
+                     */}
                 </div>
             </section>
         )
@@ -86,8 +104,8 @@ class Movie extends React.Component {
 function mapStateToProps(state, ownProps){
     return {
         movie: state.movie,
-        recommended: state.recommended,
-        smilar: state.similar
+        recommended: state.movie.recommended,
+        similar: state.movie.similar
     }
 }
 

@@ -30,8 +30,9 @@ export function loadMovie(id){
         .then(response => response.json())
         .then(movie => dispatch(loadMovieSuccess(movie)))
         .catch(error => {
+            console.log('error48956: ', error)
             dispatch(loadMovieFailure())
-            alert('We could not load the page at this time.')
+            alert('No hay peli.')
         })
     }
 }
@@ -41,6 +42,7 @@ export function getRecommended(id){
     return dispatch => {
         fetch(url)
         .then(response => response.json())
+        .then(json => json.results)
         .then(recommended => dispatch(getRecommendedSuccess(recommended)))
         .catch(error => {
             dispatch(getRecommendedFailure())

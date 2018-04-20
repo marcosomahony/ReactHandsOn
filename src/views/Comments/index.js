@@ -56,7 +56,8 @@ class Comments extends React.Component {
                     />
                 )
             })}
-            <div className="container">
+            <div className="card">
+                <div className="card-body">
                 <form>
                     <div className="form-group">
                         <label htmlFor="formGroupExampleInput">User: </label>
@@ -68,6 +69,7 @@ class Comments extends React.Component {
                     </div>
                     <button type="button" className="btn btn-success" >Guardar</button>
                 </form>
+                </div>
             </div>
             </div>
         )

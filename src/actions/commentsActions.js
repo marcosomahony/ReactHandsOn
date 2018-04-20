@@ -1,7 +1,6 @@
 import * as types from '../types/comments'
 
 export function loadCommentsSuccess(comments){
-    console.log('hemos llegado ien con los comentarios: ', comments)
     return { type: types.LOAD_COMMENTS_SUCCESS, comments }
 }
 
