@@ -17,7 +17,8 @@ export function loadComments(){
         })
         .catch(error => {
             dispatch(loadCommentsFailure())
-            alert('JJAJA TE JODES.')
+            alert('Sin comentarios.')
         })
     }
 }
+

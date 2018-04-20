@@ -16,7 +16,8 @@ class Comments extends React.Component {
         this.state= {
             comments: [],
             movieId: this.props.movieId,
-            
+            user: '', 
+            content: ''
         }
     }
 
@@ -34,7 +35,6 @@ class Comments extends React.Component {
     filterComments = comments => {
         const movieId = this.props.movieId
         return comments.filter(comment => {
-            console.log('comentario: ', comment.movieId, 'policla: ', movieId,)
             return comment.movieId.includes(movieId)
         })
     }
@@ -44,8 +44,32 @@ class Comments extends React.Component {
         return filteredComments
     }
 
+    submitComment = () => {
+        const {user, content, movieId} = this.state
+        const {commentsActions} = this.props
+        console.log(user, content)
+        const comment = {
+            //id ?
+            username: user,
+            body: content,
+            movieId: movieId
+        }
+
+        //commentsAcions.submitComment
+    }
+
+    onUsernameChange = e => {
+        let value = e.target.value
+        this.setState({user: value})
+    }
+
+    onContentChange = e => {
+        let value = e.target.value
+        this.setState({content: value})
+    }
+
     render(){
-        const {comments} = this.state
+        const {comments, user, content} = this.state
         return (
             <div>
             {this.prepareComments(comments).map((comment, i) => {
@@ -58,16 +82,17 @@ class Comments extends React.Component {
             })}
             <div className="card">
                 <div className="card-body">
+                <h1>Agrega un comentario: </h1>
                 <form>
                     <div className="form-group">
                         <label htmlFor="formGroupExampleInput">User: </label>
-                        <input type="text" className="form-control" id="user" placeholder="xX_CrINGe..lORd..69_XX" />
+                        <input type="text" className="form-control" id="user" onChange={this.onUsernameChange} placeholder="xX_CrINGe..lORd_Xx" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="formGroupExampleInput2">Comentario: </label>
-                        <textarea className="form-control" rows="5" placeholder="Contenido del comentario" id="comment"></textarea>
+                        <textarea className="form-control" rows="5" onChange={this.onContentChange} placeholder="Escriba aqui el contenido de su comentario..." id="comment"></textarea>
                     </div>
-                    <button type="button" className="btn btn-success" >Guardar</button>
+                    <button type="button" onClick={() => this.submitComment()} className="btn btn-success" >OK!</button>
                 </form>
                 </div>
             </div>

@@ -1,19 +1,14 @@
 TO DO:
 
-//1. Crear vista TV Shows
-// Aplicar la misma funcionalidad de sorting y filtering que en Movies
+
 \ Implementar un boton que elimine del estado de la aplicación una película/show (i.e: al usuario no le gusta esa peli/show)
-// En home se muestra una película a azar
-// En nav solo hay dos enlaces: Movies, TV Shows
-//2. Crear vista TV Show
-//. Agregar en el componente vista TV Show & Movie tres botones
+
+
+
 \ Un botón que despliega películas/shows similares
-\ Un botón que despliega películas/shows recomendados
-\ Un botón que despliega una lista de comentarios y permite agregar uno nuevo
-//4. Los comentarios deberán tener
-//- username
-//- contenido
-5. CRUD comentarios usando json-server como pseudo-storage
+
+
+\ CRUD comentarios usando json-server como pseudo-storage
 6. Guardar la data del comentario no-guardado en local storage
 7. Aplicar función live search en el menú de navegación
 - Solo buscar películas y TV 
